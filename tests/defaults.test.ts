@@ -2,14 +2,12 @@ import { describe, it, expect, beforeEach, afterEach } from 'vitest'
 import { resolveOptions, DEFAULT_SUCCESS_MESSAGE } from '../src/defaults.js'
 
 describe('resolveOptions', () => {
-  const saved = { ...process.env }
-  beforeEach(() => {
+  const clearSalts = () => {
     delete process.env.CONTACT_IP_SALT
     delete process.env.COMMENTS_IP_SALT
-  })
-  afterEach(() => {
-    process.env = { ...saved }
-  })
+  }
+  beforeEach(clearSalts)
+  afterEach(clearSalts)
 
   it('applies defaults when no options are given', () => {
     const o = resolveOptions()
