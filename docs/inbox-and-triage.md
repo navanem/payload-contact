@@ -1,7 +1,7 @@
 # Inbox & triage
 
 The plugin stores every submission so the contact form acts as a triageable inbox.
-No email is sent by default.
+Email notifications are off by default — every message always lands in the inbox.
 
 ## The messages collection
 
@@ -21,26 +21,23 @@ output.
 > `app/(payload)/admin/importMap.js` (see the README "Vendor it" section) so the view
 > and nav link resolve.
 
-## Sending an email notification (optional)
+## Email notifications (optional, built-in)
 
-The plugin has no SMTP dependency. To notify yourself on each new message, add a Payload
-email adapter and an `afterChange` hook on the messages collection:
+Since v0.2.0 the plugin can email you on each new message via SMTP — no separate email
+adapter required. It is **off by default**; messages always land in the inbox regardless.
 
-```ts
-// in your own collection override / config
-hooks: {
-  afterChange: [
-    async ({ doc, operation, req }) => {
-      if (operation !== 'create') return
-      await req.payload.sendEmail({
-        to: 'you@example.com',
-        subject: `New contact message from ${doc.name}`,
-        text: doc.message,
-      })
-    },
-  ],
-}
-```
+To turn it on, open **Contact Settings** in the admin, expand **Email notifications**, and:
 
-`notificationEmail` is stored in settings for this purpose but is never used to send mail
-on its own.
+1. tick **"Send an email on each new message"** (`notifyOnSubmit`),
+2. set **"Send notifications to"** (`notificationEmail`),
+3. fill in the SMTP host / port / user / password, optional implicit-TLS (port 465),
+   and an optional from address (defaults to the SMTP user).
+
+An `afterChange` hook on the messages collection then sends the notification via
+[nodemailer](https://nodemailer.com/) on every new submission. Sending is
+fire-and-forget: a failed email is logged via `payload.logger` and never blocks or fails
+the visitor's submission.
+
+The SMTP credentials live on the Contact Settings global, which is **admin-read only**:
+the public submit endpoint and `/contact` page read settings server-side with
+`overrideAccess`, so the credentials never reach the client.

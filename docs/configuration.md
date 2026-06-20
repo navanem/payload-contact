@@ -10,7 +10,7 @@ also overridable at runtime via the **Contact Settings** global (no redeploy).
 | `maxLength` | `number` | `5000` | yes | Maximum message length (longer messages are truncated). |
 | `requireSubject` | `boolean` | `false` | yes | Require the subject field. |
 | `blockedKeywords` | `string[]` | `[]` | yes | A message/subject containing any of these is silently dropped. |
-| `notificationEmail` | `string` | `''` | no | Stored only; no email is sent without an adapter. |
+| `notificationEmail` | `string` | `''` | yes | Default recipient for email notifications; editable (and activated) from the settings global. See [inbox-and-triage.md](inbox-and-triage.md). |
 | `successMessage` | `string` | sensible default | yes | Shown after a successful submission. |
 | `rateLimit` | `{ windowMs, max }` | `{ 60000, 3 }` | no | Per-hashed-IP sliding window. |
 | `messagesSlug` | `string` | `contact-messages` | no | Slug of the inbox collection. |
@@ -24,6 +24,12 @@ can toggle the form, change min/max length, require a subject, edit the blocked
 keywords, and set the success message — applied immediately. Resolution **fails open**:
 if the global has never been saved or its table does not exist yet (pre-migration),
 the plugin options are used.
+
+It also holds an **Email notifications** section (opt-in SMTP delivery — see
+[inbox-and-triage.md](inbox-and-triage.md)). Because those fields include SMTP
+credentials, the global is **admin-read only**: public consumers (the submit endpoint and
+the `/contact` page) read it server-side with `overrideAccess`, so credentials never
+reach the client.
 
 ## Environment variables
 
