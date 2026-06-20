@@ -1,5 +1,15 @@
 # Changelog
 
+## [Unreleased]
+
+### Added
+- Dev environment (`dev/`) with a sqlite-backed Payload app for local testing.
+- Vitest test suite (`tests/`) covering defaults, rate limiting/IP hashing,
+  `submitContact`, and contact-settings resolution.
+- Documentation guides under `docs/` (configuration, frontend integration, inbox & triage).
+- pnpm tooling: `.npmrc`, `pnpm-workspace.yaml`, `tsconfig.dev.json`, and
+  `dev`/`test`/`test:watch` scripts.
+
 ## 0.2.0 — 2026-06-20
 
 - **Email notifications** — opt-in SMTP delivery configured entirely from the **Contact

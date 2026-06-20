@@ -160,6 +160,31 @@ password/TLS/from. An `afterChange` hook then sends via [nodemailer](https://nod
 on every new submission. The SMTP credentials live on an **admin-read-only** global, so
 they never reach the client.
 
+## Development
+
+```bash
+pnpm install
+pnpm dev          # boots a sqlite-backed Payload admin with the plugin registered
+```
+
+The dev environment lives in `dev/` (sqlite, schema auto-push — no migrations needed).
+
+## Testing
+
+```bash
+pnpm test         # run the vitest suite once
+pnpm test:watch   # watch mode
+```
+
+Tests live in `tests/` and exercise the plugin's pure and server logic through a fake
+`payload` object — no database is required to run them.
+
+## Documentation
+
+- [`docs/configuration.md`](docs/configuration.md) — plugin options, runtime settings, env vars
+- [`docs/frontend-integration.md`](docs/frontend-integration.md) — `<ContactForm/>`, endpoint, theming
+- [`docs/inbox-and-triage.md`](docs/inbox-and-triage.md) — the inbox, statuses, email notifications
+
 ## License
 
 MIT © navanem · [www.navanem.com](https://www.navanem.com)
