@@ -1,6 +1,6 @@
 {
   "name": "@navanem/payload-contact",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Contact form plugin for Payload 3.x: a message inbox collection, runtime settings, spam protection (honeypot + rate limit), an admin inbox view, and a ready-to-use form component.",
   "license": "MIT",
   "author": "navanem <tools@sunitech.ch>",
@@ -42,6 +42,9 @@
   "homepage": "https://github.com/navanem/navanem_payload_contact#readme",
   "bugs": {
     "url": "https://github.com/navanem/navanem_payload_contact/issues"
+  },
+  "dependencies": {
+    "nodemailer": "^9.0.1"
   },
   "peerDependencies": {
     "payload": "^3.0.0",

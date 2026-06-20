@@ -18,8 +18,9 @@ export function buildContactSettings(options: ResolvedOptions): GlobalConfig {
       description: 'Open or close the contact form, tune validation and spam filtering, set the success message.',
     },
     access: {
-      // Public read so the endpoint + page can consult it; admins update.
-      read: () => true,
+      // Admin-only read: the public consumers (submit endpoint + /contact page) read
+      // this with overrideAccess, so the SMTP credentials below never leave the server.
+      read: ({ req: { user } }) => Boolean(user),
       update: ({ req: { user } }) => Boolean(user),
     },
     fields: [
@@ -70,12 +71,42 @@ export function buildContactSettings(options: ResolvedOptions): GlobalConfig {
         },
       },
       {
-        name: 'notificationEmail',
-        type: 'email',
-        defaultValue: options.notificationEmail || undefined,
+        type: 'collapsible',
+        label: 'Email notifications',
         admin: {
-          description: 'Optional. Where to send a notification on a new message (requires an email adapter; stored only for now).',
+          initCollapsed: true,
+          description: 'Email yourself when a new message arrives. Requires SMTP; credentials are admin-only.',
         },
+        fields: [
+          {
+            name: 'notifyOnSubmit',
+            type: 'checkbox',
+            defaultValue: false,
+            label: 'Send an email on each new message',
+          },
+          {
+            name: 'notificationEmail',
+            type: 'email',
+            defaultValue: options.notificationEmail || undefined,
+            label: 'Send notifications to',
+          },
+          {
+            type: 'row',
+            fields: [
+              { name: 'smtpHost', type: 'text', admin: { width: '68%', placeholder: 'smtp.example.com' } },
+              { name: 'smtpPort', type: 'number', defaultValue: 587, admin: { width: '32%' } },
+            ],
+          },
+          {
+            type: 'row',
+            fields: [
+              { name: 'smtpUser', type: 'text', admin: { width: '50%', description: 'SMTP username.' } },
+              { name: 'smtpPassword', type: 'text', admin: { width: '50%', description: 'SMTP password / app key (stored as-is, admin-only).' } },
+            ],
+          },
+          { name: 'smtpSecure', type: 'checkbox', defaultValue: false, label: 'Implicit TLS (port 465)' },
+          { name: 'smtpFrom', type: 'email', admin: { description: 'From address (defaults to the SMTP user).' } },
+        ],
       },
     ],
   }

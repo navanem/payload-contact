@@ -20,7 +20,8 @@ your Payload admin.
 - **Admin Inbox view** — a dedicated stats page (`/admin/contact-inbox`) with KPIs
   (total / new / read / replied), period filters and a recent-messages table.
 - **Drop-in form** — a styled, themeable `<ContactForm />` client component.
-- **No email dependency** — works without an SMTP/email adapter; messages land in the DB.
+- **Optional email notifications** — opt-in SMTP delivery configured from the admin
+  settings (no static email adapter required); off by default.
 
 ## Installation
 
@@ -150,11 +151,14 @@ properties (with sensible defaults), so you can theme it by overriding those var
 | `endpoint`       | `/api/contact-api/submit`     | Submit URL. |
 | `className`      | —                             | Extra class on the root element. |
 
-## No email is sent
+## Email notifications (optional)
 
-There is no SMTP/email adapter requirement — messages are stored in the inbox. To send a
-notification on each submission, add a Payload email adapter and an `afterChange` hook on
-the `contact-messages` collection.
+Off by default — messages always land in the inbox. To also get emailed on each new
+message, open **Contact Settings** in the admin, expand **Email notifications**, tick
+"Send an email on each new message", and fill in the recipient + SMTP host/port/user/
+password/TLS/from. An `afterChange` hook then sends via [nodemailer](https://nodemailer.com/)
+on every new submission. The SMTP credentials live on an **admin-read-only** global, so
+they never reach the client.
 
 ## License
 
