@@ -5,5 +5,8 @@ dist
 *.log
 dev/*.db
 dev/.next
+# dev environment
+dev/contact.db
+dev/payload-types.ts
 coverage
 .DS_Store

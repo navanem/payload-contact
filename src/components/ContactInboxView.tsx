@@ -32,7 +32,7 @@ export async function ContactInboxView({ initPageResult, params, searchParams }:
   const period = sp(searchParams, 'period') ?? 'all'
   const days = period === '7' ? 7 : period === '30' ? 30 : period === '90' ? 90 : null
   const since = days ? new Date(Date.now() - days * 86_400_000) : null
-  const where = since ? { createdAt: { greater_than_equal: since.toISOString() } } : {}
+  const where = since ? { createdAt: { greater_than_equal: since.toISOString() } } : undefined
 
   const found = await payload.find({
     collection: MESSAGES_SLUG,
