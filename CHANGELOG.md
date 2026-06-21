@@ -1,6 +1,6 @@
 # Changelog
 
-## [Unreleased]
+## 0.2.1 — 2026-06-21
 
 ### Added
 - Dev environment (`dev/`) with a sqlite-backed Payload app for local testing.
@@ -9,6 +9,11 @@
 - Documentation guides under `docs/` (configuration, frontend integration, inbox & triage).
 - pnpm tooling: `.npmrc`, `pnpm-workspace.yaml`, `tsconfig.dev.json`, and
   `dev`/`test`/`test:watch` scripts.
+
+### Fixed
+- Build no longer fails on `tsc`: typed the `where` clause in the Contact Inbox view
+  and added `@types/nodemailer` for the v0.2.0 SMTP notifier (both previously broke the
+  `dist` build and the dev typecheck).
 
 ## 0.2.0 — 2026-06-20
 
