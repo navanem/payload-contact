@@ -7,7 +7,7 @@ runtime — no redeploy required. No email is sent or exposed; messages are stor
 your Payload admin.
 
 > Built by [navanem](https://www.navanem.com) — the same author as
-> [@navanem/payload-comments](https://github.com/navanem/navanem_payload_comments).
+> [@navanem/payload-comments](https://github.com/navanem/payload-comments).
 
 ## Features
 

@@ -40,11 +40,11 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/navanem/navanem_payload_contact.git"
+    "url": "git+https://github.com/navanem/payload-contact.git"
   },
-  "homepage": "https://github.com/navanem/navanem_payload_contact#readme",
+  "homepage": "https://github.com/navanem/payload-contact#readme",
   "bugs": {
-    "url": "https://github.com/navanem/navanem_payload_contact/issues"
+    "url": "https://github.com/navanem/payload-contact/issues"
   },
   "dependencies": {
     "nodemailer": "^9.0.1"
