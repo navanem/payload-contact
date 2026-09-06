@@ -10,7 +10,7 @@ export { CONTACT_SETTINGS_SLUG } from './globals/ContactSettings.js'
 export { getContactSettings, readPublicContactSettings } from './utils/getSettings.js'
 
 /**
- * navanem_payload_contact — a contact form + admin inbox for Payload.
+ * payload-contact — a contact form + admin inbox for Payload.
  *
  * Adds a `contact-messages` collection (admin inbox), a `contact-settings` global
  * (runtime on/off, validation, spam filtering, success message), a public submit
