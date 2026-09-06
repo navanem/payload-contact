@@ -1,6 +1,6 @@
 {
   "name": "@navanem/payload-contact",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "Contact form plugin for Payload 3.x: a message inbox collection, runtime settings, spam protection (honeypot + rate limit), an admin inbox view, and a ready-to-use form component.",
   "license": "MIT",
   "author": "navanem <tools@sunitech.ch>",
