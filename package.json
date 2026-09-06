@@ -57,7 +57,7 @@
   "devDependencies": {
     "@payloadcms/db-sqlite": "^3.0.0",
     "@payloadcms/next": "^3.0.0",
-    "@types/node": "^22.0.0",
+    "@types/node": "^26.4.1",
     "@types/nodemailer": "^6.4.0",
     "@types/react": "^19.0.0",
     "payload": "^3.0.0",
