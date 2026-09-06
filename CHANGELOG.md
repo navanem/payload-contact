@@ -1,5 +1,20 @@
 # Changelog
 
+## 0.2.2 — 2026-09-06
+
+### Changed
+- Updated Payload, React, Vitest, TypeScript, and related tooling dependencies.
+- Added hardened CI, Dependabot, contribution, security, and protected-branch
+  configuration for public collaboration.
+
+### Fixed
+- Approved only the required package build scripts through pnpm's allowBuilds
+  configuration.
+
+### Security
+- Refreshed vulnerable transitive dependencies where compatible patched releases
+  are available.
+
 ## 0.2.1 — 2026-06-21
 
 ### Added
