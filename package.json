@@ -58,7 +58,7 @@
     "@payloadcms/db-sqlite": "^3.88.0",
     "@payloadcms/next": "^3.88.0",
     "@types/node": "^22.20.1",
-    "@types/nodemailer": "^6.4.24",
+    "@types/nodemailer": "^8.0.1",
     "@types/react": "^19.2.18",
     "payload": "^3.88.0",
     "react": "^19.2.8",
