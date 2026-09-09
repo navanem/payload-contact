@@ -162,8 +162,10 @@ they never reach the client.
 
 ## Development
 
+Use Node.js 22.12+ in the 22.x line, 24.x, or 26+, and pnpm 11.11.0 (the version used by CI).
+
 ```bash
-pnpm install
+pnpm install --frozen-lockfile
 pnpm dev          # boots a sqlite-backed Payload admin with the plugin registered
 ```
 
@@ -174,10 +176,15 @@ The dev environment lives in `dev/` (sqlite, schema auto-push — no migrations 
 ```bash
 pnpm test         # run the vitest suite once
 pnpm test:watch   # watch mode
+pnpm build        # compile the plugin and copy its assets
 ```
 
 Tests live in `tests/` and exercise the plugin's pure and server logic through a fake
-`payload` object — no database is required to run them.
+`payload` object, plus the development collection's unlock rule through Payload's real
+access evaluator. No database is required to run them.
+
+See [SECURITY.md](SECURITY.md) for the temporary Payload account-unlock mitigation and
+the remaining upstream advisory.
 
 ## Documentation
 

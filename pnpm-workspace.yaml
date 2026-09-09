@@ -1,3 +1,8 @@
 allowBuilds:
   esbuild: true
   sharp: true
+
+# Security fixes for versions pinned by the development CMS dependencies.
+overrides:
+  'dompurify@<3.4.13': 3.4.15
+  '@esbuild-kit/core-utils>esbuild': 0.25.12
